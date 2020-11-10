@@ -5,7 +5,8 @@ import Home from '@/components/Home'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
+  // mode: 'history',
   routes: [
     {
       path: '/',
@@ -20,3 +21,6 @@ export default new Router({
 
   ]
 })
+// router.replace({ path: '/login', redirect: '/' })
+// router.replace({ path: '/login', redirect: '*' })
+export default router
