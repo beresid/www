@@ -9,7 +9,7 @@ const router = new Router({
   // mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/login',
       name: 'Login',
       component: Login
     },
@@ -21,6 +21,6 @@ const router = new Router({
 
   ]
 })
-// router.replace({ path: '/login', redirect: '/' })
+router.replace({ path: '/login', redirect: '/' })
 // router.replace({ path: '/login', redirect: '*' })
 export default router
