@@ -1,10 +1,33 @@
 <template>
   <div class="home">
 
-    <!-- sideBar -->
-    <div class="sidenav d-flex align-items-end flex-column align-items-stretch pb-2">
+    <!-- navbar -->
+    <div>
+      <b-navbar toggleable="lg" type="dark" variant="dark">
 
-      <!-- userName -->
+        <b-navbar-brand href="#"><span style="font-family: Arial, Helvetica, sans-serif;">Beresid</span></b-navbar-brand>
+
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+
+          <b-navbar-nav class="ml-auto fontBold">
+
+            <b-nav-text class="navbaritem" v-on:click="logoutTap">خروج</b-nav-text>
+            <b-nav-text class="navbaritem">پروفایل</b-nav-text>
+            <b-nav-text class="navbaritem" v-on:click="navItem2Tap">منو</b-nav-text>
+            <b-nav-text class="navbaritem" v-on:click="navItem1Tap">رسید ها</b-nav-text>
+          </b-navbar-nav>
+
+        </b-collapse>
+
+      </b-navbar>
+    </div>
+
+
+    <!-- sideBar -->
+    <!-- <div class="sidenav d-flex align-items-end flex-column align-items-stretch pb-2">
+
       <div class="d-flex flex-column align-items-center navUser">
         <i class="fas fa-user-circle navUserIcon"></i>
         <span class="pt-2">{{userName}}</span>
@@ -12,25 +35,22 @@
 
       <hr class="divider">
 
-      <!-- item1 -->
       <div class="d-flex flex-row-reverse align-items-center pr-4 navitem" v-bind:class="{ active: navItem1}" v-on:click="navItem1Tap">
         <i class="fas fa-clipboard-list navicon"></i>
         <div class="pr-3 pt-1 pb-0">رسید ها</div>
       </div>
 
-      <!-- item2 -->
       <div class="d-flex flex-row-reverse align-items-center pr-4 navitem" v-bind:class="{ active: navItem2}" v-on:click="navItem2Tap">
         <i class="fas fa-sitemap"></i>
         <div class="pr-3 pt-1 pb-0">منو</div>
       </div>
 
-      <!-- logout -->
       <div class="mt-auto d-flex flex-row-reverse align-items-center pr-4 navitem" v-on:click="logoutTap">
         <i class="fas fa-sign-out-alt"></i>
         <div class="pr-3 pt-1 pb-0">خروج</div>
       </div>
 
-    </div>
+    </div> -->
 
     <!-- main -->
     <div class="main">
@@ -39,6 +59,7 @@
       <navMenu v-show="navItem2"></navMenu>
 
     </div>
+
   </div>
 </template>
 
@@ -55,6 +76,7 @@ export default {
   },
   data() {
     return {
+      activeItem: 0,
       userName:'',
       loading: false,
       errored: false,
@@ -69,7 +91,7 @@ export default {
   methods: {
     logoutTap: function (event) {
       localStorage.clear();
-      this.$router.replace({ path: "/" });
+      this.$router.replace({ path: "/login" });
     },
     navItem1Tap: function (event) {
       this.navItem1 = true;
@@ -103,6 +125,10 @@ body {
 }
 
 
+.home{
+  font-family: 'IranSans';
+}
+
 .sidenav {
   height: 100%;
   width: 238px;
@@ -133,8 +159,7 @@ body {
 }
 
 .main {
-  margin-right: 238px;
-  padding: 0px 10px;
+  margin-right: 0px;
 }
 
 @media screen and (max-height: 450px) {
@@ -152,6 +177,10 @@ body {
 
 .font {
   font-family: "IranSans";
+}
+
+.fontBold {
+  font-family: "IranSans-bold";
 }
 
 .white{
@@ -238,6 +267,35 @@ hr.divider {
   margin-right: 16px;
   margin-top: 12px;
   margin-bottom: 12px;
+}
+
+
+
+
+.navbaritem{
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+/* mouse over link */
+.navbaritem:hover {
+	color: #cbcbcc;
+	-moz-transition: background 0.2s ease-in-out;
+	-o-transition: background 0.2s ease-in-out;
+	-webkit-transition: background 0.2s ease-in-out;
+	/* background: #54585a; */
+	transition: background 0.2s ease-in-out;
+  text-decoration: none;
+	border-radius: 8px;
 }
 
 </style>
