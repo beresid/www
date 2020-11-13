@@ -1,9 +1,9 @@
 <template>
   <div class="navmenu">
-    <div class="d-flex flex-row justify-content-center align-items-start mt-5">
+    <div id="sections" class="d-flex flex-row justify-content-center align-items-start mt-5">
 
       <!-- items list-->
-      <div class="card cardView text-right mb-4 w-50 mt-5 mr-3">
+      <div id="section-items" class="card cardView text-right mb-4 mt-5 mr-3">
         <!-- header -->
         <div class="card-header d-flex flex-row justify-content-between">
           <button class="btn btn-success removeSize" type="submit" v-b-modal.modal-items>
@@ -46,7 +46,7 @@
       </div>
 
       <!-- menu list -->
-      <div class="cardView text-right" style="width: 135px">
+      <div id="section-category" class="cardView text-right">
         <!-- header -->
         <div
           class="card-header bg-transparent fontBold pr-0 pl-0"
@@ -75,6 +75,7 @@
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- modal category/menu -->
@@ -612,6 +613,33 @@ input[type="number"] {
 
 .inputSize {
   font-size: 15px;
+}
+
+#section-items{
+  width: 50%;
+}
+
+#section-category{
+  width: 135px;
+}
+
+@media only screen and (max-width:620px) {
+     /* For mobile phones: */
+  #sections{
+    flex-direction: column !important;
+  }
+
+  #section-items{
+    order:2;
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  #section-category{
+    order:1;
+    width: 90%;
+    margin-left: 5%;
+  }
 }
 
 </style>
