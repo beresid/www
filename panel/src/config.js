@@ -9,5 +9,6 @@ export default {
     PURGE_CALLEES: BASE_URL+'/PurgeCallees',
     UPSERT_CALL: BASE_URL+'/UpsertCall',
     GET_CALLER: BASE_URL+'/GetCaller',
-    PATCH_CALLER: BASE_URL+'/PatchCaller'
+    PATCH_CALLER: BASE_URL+'/PatchCaller',
+    RESET_PASS: BASE_URL+'/ResetCallerPwd'
 }

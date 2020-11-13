@@ -18,6 +18,7 @@
               >
               <input
                 v-model="code"
+                pattern="[1-9]"
                 type="number"
                 class="form-control text-right inputSize"
                 id="formGroupExampleInput"
@@ -147,8 +148,10 @@ export default {
           }
         })
         .catch(error => {
-          this.hasError('لطفا مجددا تلاش کنید');
-          console.log(error);
+            localStorage.clear();
+          this.$router.replace({ path: "/login" });
+          // this.hasError('لطفا مجددا تلاش کنید');
+          // console.log(error);
         });
     },
     purgeCalless: function(code) {

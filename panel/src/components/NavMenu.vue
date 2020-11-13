@@ -337,7 +337,6 @@ export default {
       itemModalDesc:null,
       itemModalPrice:null,
 
-
       itemEditModalName:null,
       itemEditModalDesc:null,
       itemEditModalPrice:null,

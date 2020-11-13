@@ -14,7 +14,7 @@
           <b-navbar-nav class="ml-auto fontBold">
 
             <b-nav-text class="navbaritem" v-on:click="logoutTap">خروج</b-nav-text>
-            <b-nav-text class="navbaritem">پروفایل</b-nav-text>
+            <b-nav-text class="navbaritem" v-on:click="navItem3Tap">پروفایل</b-nav-text>
             <b-nav-text class="navbaritem" v-on:click="navItem2Tap">منو</b-nav-text>
             <b-nav-text class="navbaritem" v-on:click="navItem1Tap">رسید ها</b-nav-text>
           </b-navbar-nav>
@@ -57,6 +57,7 @@
 
       <navResid v-show="navItem1"></navResid>
       <navMenu v-show="navItem2"></navMenu>
+      <navProfile v-show="navItem3"></navProfile>
 
     </div>
 
@@ -67,12 +68,14 @@
 import axios from "axios";
 import navMenu from './NavMenu'
 import navResid from './NavResid'
+import navProfile from './NavProfile'
 
 export default {
   name: "Home",
   components:{
     navMenu,
-    navResid
+    navResid,
+    navProfile
   },
   data() {
     return {
@@ -82,7 +85,8 @@ export default {
       errored: false,
       errors: [],
       navItem1: true,
-      navItem2: false
+      navItem2: false,
+      navItem3: false
     };
   },
   mounted() {
@@ -96,11 +100,18 @@ export default {
     navItem1Tap: function (event) {
       this.navItem1 = true;
       this.navItem2 = false;
+      this.navItem3 = false;
     },
     navItem2Tap: function (event) {
       this.navItem1 = false;
       this.navItem2 = true;
+      this.navItem3 = false;
     },
+    navItem3Tap: function (event) {
+      this.navItem1 = false;
+      this.navItem2 = false;
+      this.navItem3 = true;
+    }
   }
 };
 </script>
