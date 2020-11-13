@@ -5,7 +5,7 @@
     >
 
       <!-- card submit -->
-      <div class="card cardView text-right w-50">
+      <div class="card cardView text-right card-width">
         <!-- header -->
         <div class="card-header fontBold">ثبت رسید</div>
 
@@ -57,7 +57,7 @@
       </div>
 
       <!-- card list -->
-      <div class="card cardView text-right w-50 mt-4 mb-4">
+      <div class="card cardView text-right card-width mt-4 mb-4">
         <!-- header -->
         <div class="card-header d-flex flex-row justify-content-between">
           <button class="btn btn-danger removeSize" type="submit" v-on:click="purgeAllCalless">
@@ -96,7 +96,7 @@
       </div>
     </div>
 
-    <div v-show="errored" class="alert alert-danger mt-2 font w-50 fixed-bottom mx-auto">
+    <div v-show="errored" class="alert alert-danger mt-2 font card-width fixed-bottom mx-auto">
       <strong>خطا!</strong>
       <span>{{errorMsg}}</span>
     </div>
@@ -324,5 +324,16 @@ input[type="number"] {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
+}
+
+.card-width{
+  width: 50%;
+}
+
+@media only screen and (max-width:620px) {
+     /* For mobile phones: */
+    .card-width{
+        width:90%;
+    }
 }
 </style>

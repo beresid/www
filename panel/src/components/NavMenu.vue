@@ -31,8 +31,8 @@
               <!-- left items -->
               <div class="d-flex flex-row">
                 <span class="fontBold text-danger itemDelete mr-5" v-on:click="removeItem(index)">حذف</span>
-                <span class="fontBold text-info itemDelete mr-5">ویرایش</span>
-                <span class="fontBold text-success" style="font-size: 13px;" dir="rtl">{{item.price}} ت</span>
+                <span class="fontBold text-info itemDelete mr-5" v-on:click="showEditItemsModal(index)">ویرایش</span>
+                <span class="fontBold text-success" style="font-size: 13px;" dir="rtl">{{formatPrice(item.price)}}</span>
               </div>
 
               <!-- right items -->
@@ -53,7 +53,7 @@
           style="border: none;">
 
           <div class="d-flex flex-row justify-content-between">
-            <span style="font-size: 11px;padding-top:3px;cursor: pointer;outline: none !important;" class="text-success" v-b-modal.modal-prevent-closing>جدید</span>
+            <span style="font-size: 11px;padding-top:3px;cursor: pointer;outline: none !important;" class="text-success" v-b-modal.modal-menu>جدید</span>
             <span>منو</span>
           </div>
 
@@ -77,9 +77,9 @@
       </div>
     </div>
 
-    <!-- modal category -->
+    <!-- modal category/menu -->
     <b-modal
-      id="modal-prevent-closing"
+      id="modal-menu"
       ref="modal"
       title="دسته بندی جدید"
       content-class="font"
@@ -226,6 +226,96 @@
 
     </b-modal>
 
+
+    <!-- modal edit items -->
+    <b-modal
+      id="modal-edit-items"
+      ref="modaledititems"
+      title="ویرایش محصول"
+      content-class="font"
+      @show="resetModal"
+      @hidden="resetModal"
+    >
+      <form ref="form" class="fontBold" @submit.stop.prevent="submitEditItemsModal">
+
+        <!-- <span>{{menus.menu[currentMenuItem].items[currentMenuItemChild].name}}</span> -->
+        <b-form-group
+          label="عنوان"
+          label-for="name-input"
+          class="text-right labelSize"
+          invalid-feedback="Name is required">
+          <b-form-input
+            id="name-input"
+            v-model="itemEditModalName"
+            class="text-right inputSize"
+            autofocus
+            required
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label="توضیحات"
+          label-for="desc-input"
+          class="text-right labelSize"
+          invalid-feedback="Name is required">
+          <b-form-input
+            id="desc-input"
+            v-model="itemEditModalDesc"
+            class="text-right inputSize"
+            required
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label="قیمت"
+          label-for="price-input"
+          class="text-right labelSize"
+          invalid-feedback="Name is required">
+          <b-form-input
+            id="price-input"
+            type="number"
+            v-model="itemEditModalPrice"
+            class="text-right inputSize"
+            required
+          ></b-form-input>
+        </b-form-group>
+
+      </form>
+
+       <template #modal-header>
+        <div class="d-flex justify-content-end w-100">
+          <span class="fontBold p-0">ویرایش محصول</span>
+        </div>
+      </template>
+
+       <template #modal-footer>
+        <div class="d-flex justify-content-start w-100">
+
+          <b-button
+            variant="success"
+            size="sm"
+            class="font"
+            style="width:60px;"
+            @click="submitEditItemsModal">
+            ثبت
+          </b-button>
+
+          <b-button
+            variant="light"
+            size="sm"
+            class="font ml-2"
+            style="width:60px;"
+            @click="hideEditItemsModal">
+            لغو
+          </b-button>
+          
+
+        </div>
+      </template>
+
+    </b-modal>
+
+
   </div>
 </template>
 
@@ -241,10 +331,17 @@ export default {
       errored: false,
       errorMsg: "",
       currentMenuItem: 0,
+      currentMenuItemChild: null,
       catModalName:null,
       itemModalName:null,
       itemModalDesc:null,
       itemModalPrice:null,
+
+
+      itemEditModalName:null,
+      itemEditModalDesc:null,
+      itemEditModalPrice:null,
+
       menus: {}
     };
   },
@@ -252,6 +349,9 @@ export default {
     this.caller();
   },
   methods: {
+    formatPrice(value) {
+      return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    },
     caller: function(event) {
       const body = {
         staticID: localStorage.id
@@ -365,7 +465,49 @@ export default {
     removeItem(index){
       this.menus.menu[this.currentMenuItem].items.splice(index, 1);
       this.patchCaller();
+    },
+
+    showEditItemsModal(index) {
+      this.currentMenuItemChild = index;
+      this.itemEditModalName = this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].name;
+      this.itemEditModalDesc = this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].desc;
+      this.itemEditModalPrice = this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].price;
+      this.$refs['modaledititems'].show();
+    },
+
+    submitEditItemsModal(){
+
+      if(!this.itemEditModalName){
+        return;
+      }
+
+      if(!this.itemEditModalDesc){
+        return;
+      }
+
+      if(!this.itemEditModalPrice){
+        return;
+      }
+
+      this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].name = this.itemEditModalName;
+      this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].desc = this.itemEditModalDesc;
+      this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].price = this.itemEditModalPrice;
+
+      this.patchCaller();
+      this.hideEditItemsModal();
+      this.resetEditItemsModal();
+    },
+
+    resetEditItemsModal() {
+      this.itemEditModalName = null;
+      this.itemEditModalDesc = null;
+      this.itemEditModalPrice = null;
+    },
+
+    hideEditItemsModal() {
+      this.$refs['modaledititems'].hide()
     }
+    
   }
 };
 </script>
