@@ -7,6 +7,48 @@
         <title>Beresid</title>
         <link rel="stylesheet" href="style/normalize.css">
         <link rel="stylesheet" href="style/style.css">
+        <script type = "text/javascript" src = "lib/jquery/jquery-3.5.1.js"></script>
+
+        <script type = "text/javascript">
+          $(document).ready(function() {
+
+            $.ajax({
+                url:"https://beresid.com/GetCaller",
+                type:"POST",
+                data:'{"staticID":"d5173aa9f5c8e1a376683c"}',
+                contentType:"application/json; charset=utf-8",
+                dataType:"json",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                success: function(data,status){
+                  $("#title").text(data.title);
+                  $("#desc").text(data.desc);
+
+                  jQuery.each( data.menu, function( i, val ) {
+
+                    if(val.items.length > 0){
+                      $('#cat').append( '<p id="category">' + val.name + '</p>' );
+                    
+                      jQuery.each( val.items, function( i, items ) {
+                      $('#cat').append( '<table><tr><td id="child-price"> ' + items.price + ' ت</td><td><table><tbody><tr><td id="child-title">' + items.name + '</td><td id="child-dot" rowspan="0"><span class="dot"></span></td></tr><tr><td id="child-sub">' + items.desc + '</td></tr></tbody></table></td></tr></table>' );
+                      });
+                    }
+
+                  });
+
+
+                },
+                error: function(){
+                  alert('خطا در دریافت اطلاعات');
+                }
+            });
+
+            // var url = window.location.pathname;
+            // var staticId = url.substring(url.lastIndexOf('/') + 1);
+
+          });
+       </script>
 
     </head>
 
@@ -15,17 +57,21 @@
 
       <div class="card">
 
-        <h2 class="header-text">لورم ایپسوم</h2>
+
+        <h2 class="header-text" id="title">--</h2>
         
-        <p class="header-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+        <p class="header-text" id="desc">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
 
         <button class="button">پیگیری سفارش</button>
 
         <p id="menu-title">منو رستوران</p>
 
-        <p id="category">پیتزا</p>
+        <div id="cat"></div>
 
-        <table>
+
+        
+
+        <!-- <table>
           <tr>
             <td id="child-price">  2,000 ت</td>
             <td>
@@ -42,47 +88,7 @@
                   </table>
             </td>
           </tr>
-        </table>
-
-        <table>
-          <tr>
-            <td id="child-price">  2,000 ت</td>
-            <th>
-              <table>
-                  <tbody>
-                    <tr>
-                      <td id="child-title">پیتزا مخصوص</td>
-                      <td id="child-dot" rowspan="0"><span class="dot"></span></td>
-                    </tr>
-                    <tr>
-                      <td id="child-sub">دو نفره</td>
-                    </tr>
-                  </tbody>
-                  </table>
-            </th>
-          </tr>
-        </table>
-        
-        <p id="category">سالاد</p>
-
-        <table>
-          <tr>
-            <td id="child-price">  2,000 ت</td>
-            <th>
-              <table>
-                  <tbody>
-                    <tr>
-                      <td id="child-title">سالاد شیرازی</td>
-                      <td id="child-dot" rowspan="0"><span class="dot"></span></td>
-                    </tr>
-                    <tr>
-                      <td id="child-sub">گوجه خیار و سس</td>
-                    </tr>
-                  </tbody>
-                  </table>
-            </th>
-          </tr>
-        </table>
+        </table> -->
 
         <div style="height: 20px;"></div>
 

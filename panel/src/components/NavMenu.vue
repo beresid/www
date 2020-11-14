@@ -30,8 +30,8 @@
             >
               <!-- left items -->
               <div class="d-flex flex-row">
-                <span class="fontBold text-danger itemDelete mr-5" v-on:click="removeItem(index)">حذف</span>
-                <span class="fontBold text-info itemDelete mr-5" v-on:click="showEditItemsModal(index)">ویرایش</span>
+                <span class="fontBold text-danger itemDelete mr-3" v-on:click="removeItem(index)">حذف</span>
+                <span class="fontBold text-info itemDelete mr-4" v-on:click="showEditItemsModal(index)">ویرایش</span>
                 <span class="fontBold text-success" style="font-size: 13px;" dir="rtl">{{formatPrice(item.price)}}</span>
               </div>
 
@@ -40,6 +40,7 @@
                 <span class="fontBold text-dark text-right" style="font-size: 14px;">{{item.name}}</span>
                 <span class="text-secondary text-right" style="font-size: 12px;">{{item.desc}}</span>
               </div>
+
             </div>
           </div>
         </div>
@@ -47,6 +48,7 @@
 
       <!-- menu list -->
       <div id="section-category" class="cardView text-right">
+
         <!-- header -->
         <div
           class="card-header bg-transparent fontBold pr-0 pl-0"
@@ -592,6 +594,7 @@ input[type="number"] {
   background-color: #f4f4f4;
   margin-bottom: 8px;
   font-size: 13px;
+  color: #000000;
 }
 
 .btn-active {
