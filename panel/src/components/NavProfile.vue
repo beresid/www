@@ -6,7 +6,7 @@
     >
 
       <!-- card info -->
-      <div class="card cardView text-right card-width">
+      <div class="card cardView text-right card-width d-print-none">
         <!-- header -->
         <div class="card-header fontBold">اطلاعات فروشگاه</div>
 
@@ -58,8 +58,55 @@
         </div>
       </div>
 
+      <!-- card qrCode -->
+      <div class="card cardView text-right card-width mt-4">
+        <!-- header -->
+        <div class="card-header d-flex flex-row justify-content-between">
+
+        
+          <div class="d-inline-flex">
+
+            <!-- <button class="btn btn-info removeSize" type="submit" v-on:click="purgeAllCalless">
+              چاپ
+            </button>
+
+            <button class="btn btn-success removeSize" type="submit" v-on:click="purgeAllCalless">
+              مشاهده
+            </button> -->
+
+          </div>
+
+          <span class="fontBold">صفحه مشتری</span>
+        </div>
+
+        <!-- body -->
+        <div class="card-body bg-transparent text-center">
+
+          <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
+
+          <div class="text-right">
+
+            <button
+              class="btn btn-success fontBold pl-3 pr-3 d-print-none"
+              type="submit"
+              @click="showUserPageTap">
+              مشاهده
+            </button>
+
+            <button
+              class="btn btn-info fontBold pl-3 pr-3 d-print-none"
+              type="submit"
+              @click="printQrTap">
+              چاپ
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
       <!-- card pass -->
-      <div class="card cardView text-right card-width mt-4 mb-4">
+      <div class="card cardView text-right card-width mt-4 mb-4 d-print-none">
         <!-- header -->
         <div class="card-header fontBold">تغییر رمز عبور</div>
 
@@ -144,6 +191,7 @@
 <script>
 import axios from "axios";
 import config from '../config';
+import QrcodeVue from 'qrcode.vue'
 
 export default {
   name: "NavProfile",
@@ -163,13 +211,26 @@ export default {
       errored: false,
       errorMsg: '',
       seccessed: false,
-      successMsg: ''
+      successMsg: '',
+
+      value: 'https://beresid.com/?c=' + localStorage.id,
+      size: 180,
     };
+  },
+  components: {
+    QrcodeVue,
   },
   mounted() {
     this.caller();
   },
   methods: {
+    showUserPageTap: function(event){
+        // location.href=this.value
+        window.open(this.value, '_blank');
+    },
+    printQrTap: function(event){
+      window.print()
+    },
     caller: function(event) {
       const body = {
         staticID: localStorage.id
