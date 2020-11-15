@@ -2,14 +2,25 @@
   <div class="navmenu">
     <div id="sections" class="d-flex flex-row justify-content-center align-items-start mt-5">
 
-      <!-- items list-->
+      <!-- items-->
       <div id="section-items" class="card cardView text-right mb-4 mt-5 mr-3">
         <!-- header -->
         <div class="card-header d-flex flex-row justify-content-between">
-          <button class="btn btn-success removeSize" type="submit" v-b-modal.modal-items>
-            افزودن
-          </button>
+
+          <div class="d-flex flex-row">
+
+            <button class="btn btn-success removeSize" type="submit" v-b-modal.modal-items>
+              افزودن
+            </button>
+
+            <button class="btn btn-danger removeSize ml-2" type="submit" v-on:click="removeCategory">
+              حذف دسته
+            </button>
+
+          </div>
+
           <span class="fontBold">{{ menus.menu[currentMenuItem].name }}</span>
+
         </div>
 
         <!-- body -->
@@ -46,7 +57,7 @@
         </div>
       </div>
 
-      <!-- menu list -->
+      <!-- category -->
       <div id="section-category" class="cardView text-right">
 
         <!-- header -->
@@ -464,6 +475,13 @@ export default {
       this.hideItemsModal();
       this.resetItemsModal();
     },
+
+    removeCategory(){
+      this.menus.menu.splice(this.currentMenuItem, 1);
+      this.currentMenuItem = 0;
+      this.patchCaller();
+    },
+    
     removeItem(index){
       this.menus.menu[this.currentMenuItem].items.splice(index, 1);
       this.patchCaller();

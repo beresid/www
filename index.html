@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Beresid</title>
         <link rel="stylesheet" href="style/normalize.css">
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="style/style.css">
         <script type = "text/javascript" src = "lib/jquery/jquery-3.5.1.js"></script>
         <script src="./lib/index.js"></script>
@@ -12,7 +13,16 @@
     
     <body>
 
-      <div class="card">
+
+      <div id="spinner">
+        <div class="plus">
+          <div class="spinner-border text-light" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="card" class="card">
 
         <h2 class="header-text" id="title">--</h2>
         
@@ -26,7 +36,10 @@
 
         <div style="height: 20px;"></div>
 
-      </div>
+      </div> 
+
+
+      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
     </body>
 

@@ -2,8 +2,7 @@
   <div class="navprofile">
 
     <div
-      class="d-flex flex-column justify-content-center align-items-center mt-5"
-    >
+      class="d-flex flex-column justify-content-center align-items-center mt-5">
 
       <!-- card info -->
       <div class="card cardView text-right card-width d-print-none">
@@ -58,55 +57,8 @@
         </div>
       </div>
 
-      <!-- card qrCode -->
-      <div class="card cardView text-right card-width mt-4">
-        <!-- header -->
-        <div class="card-header d-flex flex-row justify-content-between">
-
-        
-          <div class="d-inline-flex">
-
-            <!-- <button class="btn btn-info removeSize" type="submit" v-on:click="purgeAllCalless">
-              چاپ
-            </button>
-
-            <button class="btn btn-success removeSize" type="submit" v-on:click="purgeAllCalless">
-              مشاهده
-            </button> -->
-
-          </div>
-
-          <span class="fontBold">صفحه مشتری</span>
-        </div>
-
-        <!-- body -->
-        <div class="card-body bg-transparent text-center">
-
-          <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
-
-          <div class="text-right">
-
-            <button
-              class="btn btn-success fontBold pl-3 pr-3 d-print-none"
-              type="submit"
-              @click="showUserPageTap">
-              مشاهده
-            </button>
-
-            <button
-              class="btn btn-info fontBold pl-3 pr-3 d-print-none"
-              type="submit"
-              @click="printQrTap">
-              چاپ
-            </button>
-
-          </div>
-
-        </div>
-      </div>
-
       <!-- card pass -->
-      <div class="card cardView text-right card-width mt-4 mb-4 d-print-none">
+      <div class="card cardView text-right card-width mt-4 d-print-none">
         <!-- header -->
         <div class="card-header fontBold">تغییر رمز عبور</div>
 
@@ -174,7 +126,56 @@
         </div>
       </div>
 
+      <!-- card qrCode -->
+      <div class="card cardView text-right card-width mt-4 mb-4 d-print-none">
+        <!-- header -->
+        <div class="card-header d-flex flex-row justify-content-between">
+
+        
+          <div class="d-inline-flex">
+
+            <!-- <button class="btn btn-info removeSize" type="submit" v-on:click="purgeAllCalless">
+              چاپ
+            </button>
+
+            <button class="btn btn-success removeSize" type="submit" v-on:click="purgeAllCalless">
+              مشاهده
+            </button> -->
+
+          </div>
+
+          <span class="fontBold">صفحه مشتری</span>
+        </div>
+
+        <!-- body -->
+        <div class="card-body bg-transparent text-center">
+
+          <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
+
+          <div class="text-right">
+
+            <button
+              class="btn btn-success fontBold pl-3 pr-3 d-print-none"
+              type="submit"
+              @click="showUserPageTap">
+              مشاهده
+            </button>
+
+            <button
+              class="btn btn-info fontBold pl-3 pr-3 d-print-none"
+              type="submit"
+              @click="printQrTap">
+              چاپ
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
     </div>
+
+    <qrcode-vue :value="value" :size="450" level="H"  class="onlyPrint"></qrcode-vue>
 
     <div v-show="errored" class="alert alert-danger mt-2 font card-width fixed-bottom mx-auto">
       <strong>خطا!</strong>
@@ -229,7 +230,13 @@ export default {
         window.open(this.value, '_blank');
     },
     printQrTap: function(event){
-      window.print()
+      window.print();
+      // this.largeQrSize();
+      // setTimeout(() => {
+      //   window.print();  
+      //   this.smallQrSize();
+      // }, 100);
+      
     },
     caller: function(event) {
       const body = {
@@ -467,5 +474,17 @@ input[type="number"] {
     .card-width{
         width:90%;
     }
+}
+
+
+@media print {
+  .noPrint {
+      display:none;
+  }
+}
+@media screen {
+   .onlyPrint {
+       display: none;
+   }
 }
 </style>
