@@ -7,7 +7,7 @@
       <!-- card info -->
       <div class="card cardView text-right card-width d-print-none">
         <!-- header -->
-        <div class="card-header fontBold">اطلاعات فروشگاه</div>
+        <div class="card-header fontBold">اطلاعات</div>
 
         <!-- body -->
         <div class="card-body bg-transparent">

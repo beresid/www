@@ -24,6 +24,9 @@ body{
     background-color: #fff;
     border-radius: 6px;
     margin: 10px;
+}
+
+.spinner{
     display: none;
 }
   
@@ -38,6 +41,8 @@ body{
 
 .header-text {
     text-align: right;
+    font-family: 'IranSans-bold';
+    font-size: 20px;
 }
 
 .card h2{
@@ -45,34 +50,30 @@ body{
 }
 
 .button {
-    background-color: #be263b;
-    border: 2px solid #be263b;
-    color: white; 
-    padding: 14px 32px;
     text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    display: block;
-    margin-top: 40px;
+    /* text-decoration: none; */
+    /* font-size: 16px; */
+    /* display: block; */
+    /* margin-top: 40px;
     margin-bottom: 40px;
     margin-left: auto;
     margin-right: auto;
     transition-duration: 0.4s;
     border-radius: 10px;
     cursor: pointer;
-    outline: none;
+    outline: none; */
 }
 
-.button:hover {
+/* .button:hover {
     background-color: #be263b;
     color: white;
     font-size: 18px;
-}
+} */
 
-#menu-title{
-    text-align: right;
+#msg{
     padding-top: 10px;
-    font-family: 'IranSans-bold';
+    font-family: 'IranSans';
+    font-size: 25px;
 }
 
 #category{
@@ -120,6 +121,10 @@ td{
     width: 3px;
     text-align: left;
     padding-left: 12px;
+}
+
+#card-result{
+    display: none;
 }
 
 #spinner {
