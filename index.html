@@ -21,22 +21,69 @@
         </div>
       </div>
 
-      <div id="card" class="card">
+      <div class="d-flex flex-column">
 
-        <h2 class="header-text" id="title">--</h2>
-        
-        <p class="header-text" id="desc"></p>
+        <!-- card 1 -->
+        <div id="card-1" class="card">
 
-        <button id="tracking" class="button">پیگیری</button>
+          <h2 class="header-text" id="title">--</h2>
+          
+          <p class="header-text" id="desc"></p>
 
-        <p id="menu-title">منو</p>
+        </div> 
 
-        <div id="cat"></div>
+        <!-- card 2 -->
+        <div id="card-2" class="card mt-1">
 
-        <div style="height: 20px;"></div>
+          <form class="text-center mt-4" id="form">
+            <div class="form-group ml-3 mr-3">
+              <input
+                onClick="this.select();" 
+                pattern="[1-9]"
+                type="number"
+                class="form-control text-right inputSize"
+                id="code_input"
+                placeholder="شماره رسید"
+                required/>
+            </div>
+  
+            <button
+              id="tracking"
+              class="btn btn-success fontBold pl-3 pr-3 bg-success"
+            >
+            
+              <!-- <span 
+                id="track-btn-loading"
+                class="spinner-border spinner-border-sm mb-1"
+                role="status"
+                aria-hidden="true"
+              ></span> -->
+  
+              <span
+                id="track-btn-text">پیگیری کن</span>
+  
+            </button>
 
-      </div> 
+            <!-- <button id="tracking" class="button">پیگیری</button> -->
 
+          </form>
+  
+
+        </div> 
+  
+        <!-- card 3 -->
+        <div id="card-3" class="card mt-1">
+
+          <p id="menu-title">منو</p>
+  
+          <div id="cat"></div>
+  
+          <div style="height: 20px;"></div>
+   
+        </div> 
+  
+
+      </div>
 
       <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 

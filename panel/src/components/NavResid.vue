@@ -61,10 +61,19 @@
       <div class="card cardView text-right card-width mt-4 mb-4">
         <!-- header -->
         <div class="card-header d-flex flex-row justify-content-between">
-          <button class="btn btn-danger removeSize" type="submit" v-on:click="purgeAllCalless">
-            حذف همه
-          </button>
+          
+          <div class="d-flex align-items-center">
+
+            <button class="btn btn-danger removeSize" type="submit" v-on:click="purgeAllCalless">
+              حذف همه
+            </button>
+
+            <span class="badge-max-resid ml-3 pt-1">{{highestCode}}<i class="fas fa-arrow-up ml-1 mr-1"></i></span>
+          
+          </div>
+          
           <span class="fontBold">رسید ها</span>
+
         </div>
 
         <!-- body -->
@@ -118,7 +127,8 @@ export default {
       submitloading: false,
       errored: false,
       errorMsg: '',
-      callees: []
+      callees: [],
+      highestCode: '0'
     };
   },
   mounted() {
@@ -139,10 +149,11 @@ export default {
           }
         })
         .then(response => {
-          console.log(response);
+          // console.log(response);
 
           if (response.status == 200) {
             this.callees = response.data;
+            this.highestCode = this.calcHighestCode().code;
           } else {
             this.hasError('لطفا مجددا تلاش کنید');
           }
@@ -153,6 +164,10 @@ export default {
           // this.hasError('لطفا مجددا تلاش کنید');
           // console.log(error);
         });
+    },
+    calcHighestCode(){
+      if (this.callees.length == 0) return 
+      return this.callees.reduce((a,b) => Number(a.code) > Number(b.code) ? a : b)     
     },
     purgeCalless: function(code) {
 
@@ -168,7 +183,7 @@ export default {
           }
         })
         .then(response => {
-          console.log(response);
+          // console.log(response);
 
           if (response.status == 200) {
             this.getCalleesList();
@@ -193,7 +208,7 @@ export default {
           }
         })
         .then(response => {
-          console.log(response);
+          // console.log(response);
 
           if (response.status == 200) {
             this.getCalleesList();
@@ -229,7 +244,7 @@ export default {
         .then(response => {
           
           this.submitloading = false;
-          console.log(response);
+          // console.log(response);
           
 
           if (response.status == 202) {

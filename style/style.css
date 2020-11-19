@@ -24,6 +24,9 @@ body{
     background-color: #fff;
     border-radius: 6px;
     margin: 10px;
+}
+
+#card-1, #card-2, #card-3{
     display: none;
 }
   
@@ -48,13 +51,13 @@ body{
     background-color: #be263b;
     border: 2px solid #be263b;
     color: white; 
-    padding: 14px 32px;
+    padding: 8px 25px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     display: block;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
     transition-duration: 0.4s;

@@ -13,56 +13,23 @@
     
     <body>
 
-      <!-- <div id="spinner">
+      <div id="spinner">
         <div class="plus">
           <div class="spinner-border text-light" role="status">
             <span class="sr-only">Loading...</span>
           </div>
         </div>
-      </div> -->
+      </div>
 
-      <div id="card" class="card">
+      <div id="card-title" class="card">
 
-        <h2 class="header-text" id="title">پیگیری</h2>
-
-        <form class="text-center mt-4">
-          <div class="form-group ml-3 mr-3">
-            <input
-              onClick="this.select();" 
-              pattern="[1-9]"
-              type="number"
-              class="form-control text-right inputSize"
-              id="code_input"
-              placeholder="شماره رسید"
-              required/>
-          </div>
-
-          <button
-            id="track-btn"
-            class="btn btn-success fontBold pl-3 pr-3 bg-success"
-          >
-          
-            <span 
-              id="track-btn-loading"
-              class="spinner-border spinner-border-sm mb-1"
-              role="status"
-              aria-hidden="true"
-            ></span>
-
-            <span
-              id="track-btn-text">پیگیری کن</span>
-
-          </button>
-          
-        </form>
-
-        <span id="alert-error" class="text-center mb-2 text-danger">شماره رسید را وارد کنید</span>
+        <h2 class="header-text text-center mb-3" id="title">رسید شما</h2>
 
       </div> 
 
       <div id="card-result" class="card">
 
-        <h2 class="header-text" id="title">رسید شما</h2>
+        <h2 class="header-text">رسید شما</h2>
 
         <div class="text-center mt-3 mb-4" dir="rtl">
 
@@ -73,7 +40,7 @@
         </div>
 
 
-      </div> 
+      </div>
 
       <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
