@@ -1,11 +1,15 @@
 <template>
   <div class="home">
 
+    <div id="note">
+    رایگانه، رایگانم می مونه
+    </div>
+
     <!-- navbar -->
     <div>
       <b-navbar toggleable="lg" type="dark" variant="dark">
 
-        <b-navbar-brand href="#"><span style="font-family: Arial, Helvetica, sans-serif;">Beresid</span></b-navbar-brand>
+        <b-navbar-brand href="#"><span style="font-family: Arial, Helvetica, sans-serif;">beresid</span></b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -307,6 +311,21 @@ hr.divider {
 	transition: background 0.2s ease-in-out;
   text-decoration: none;
 	border-radius: 8px;
+}
+
+#note {
+    /* position: absolute; */
+    /* z-index: 101; */
+    /* top: 0; */
+    /* left: 0; */
+    /* right: 0; */
+    background: #fde073;
+    text-align: center;
+    line-height: 2.5;
+    /* overflow: hidden;  */
+    /* -webkit-box-shadow: 0 0 5px black; */
+    /* -moz-box-shadow:    0 0 5px black; */
+    /* box-shadow:         0 0 5px black; */
 }
 
 </style>

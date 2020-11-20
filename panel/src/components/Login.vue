@@ -19,7 +19,7 @@
         />
       </svg>
 
-      <h1 class="h3 mb-5 font-weight-bold">Beresid</h1>
+      <h1 class="h3 mb-5 font-weight-bold">beresid</h1>
 
       <label for="inputUserName" class="sr-only">نام کاربری</label>
 

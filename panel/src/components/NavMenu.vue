@@ -41,8 +41,8 @@
             >
               <!-- left items -->
               <div class="d-flex flex-row">
-                <span class="fontBold text-danger itemDelete mr-3" v-on:click="removeItem(index)">حذف</span>
-                <span class="fontBold text-info itemDelete mr-4" v-on:click="showEditItemsModal(index)">ویرایش</span>
+                <!-- <span class="fontBold text-danger itemDelete mr-3" v-on:click="removeItem(index)">حذف</span> -->
+                <span class="fontBold itemDelete mr-5" style="color: #1565C0" v-on:click="showEditItemsModal(index)">ویرایش</span>
                 <span class="fontBold text-success" style="font-size: 13px;" dir="rtl">{{formatPrice(item.price)}}</span>
               </div>
 
@@ -303,7 +303,9 @@
       </template>
 
        <template #modal-footer>
-        <div class="d-flex justify-content-start w-100">
+        <div class="d-flex justify-content-between w-100">
+
+          <div class="d-flex">
 
           <b-button
             variant="success"
@@ -322,7 +324,17 @@
             @click="hideEditItemsModal">
             لغو
           </b-button>
+
+          </div>
           
+          <b-button
+            variant="danger"
+            size="sm"
+            class="font ml-2"
+            style="width:60px;"
+            @click="removeEditItemsModal">
+            حذف
+          </b-button>
 
         </div>
       </template>
@@ -482,10 +494,10 @@ export default {
       this.patchCaller();
     },
     
-    removeItem(index){
-      this.menus.menu[this.currentMenuItem].items.splice(index, 1);
-      this.patchCaller();
-    },
+    // removeItem(index){
+    //   this.menus.menu[this.currentMenuItem].items.splice(index, 1);
+    //   this.patchCaller();
+    // },
 
     showEditItemsModal(index) {
       this.currentMenuItemChild = index;
@@ -525,6 +537,13 @@ export default {
     },
 
     hideEditItemsModal() {
+      this.$refs['modaledititems'].hide()
+    },
+
+    removeEditItemsModal() {
+
+      this.menus.menu[this.currentMenuItem].items.splice(this.currentMenuItemChild, 1);
+      this.patchCaller();
       this.$refs['modaledititems'].hide()
     }
     
