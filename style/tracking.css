@@ -123,6 +123,14 @@ td{
     display: none;
 }
 
+#alert-nothing{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
 #spinner {
     position: fixed;
     width: 100%;

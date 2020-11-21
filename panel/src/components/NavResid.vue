@@ -11,7 +11,7 @@
 
         <!-- body -->
         <div class="card-body bg-transparent">
-          <form>
+          <form autocomplete="on">
             <div class="form-group">
               <label for="formGroupExampleInput" class="labelSize mb-0"
                 >شماره رسید</label
@@ -19,7 +19,7 @@
               <input
                 v-model="code"
                 pattern="[1-9]"
-                type="number"
+                type="tel"
                 class="form-control text-right inputSize"
                 id="formGroupExampleInput"
                 placeholder="شماره رسید"
@@ -244,12 +244,10 @@ export default {
         .then(response => {
           
           this.submitloading = false;
-          // console.log(response);
-          
 
           if (response.status == 202) {
             this.code = "";
-            this.msg = "";
+            // this.msg = "";
             this.getCalleesList();  
           } else {
               this.hasError('لطفا مجددا تلاش کنید');
