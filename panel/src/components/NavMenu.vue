@@ -198,7 +198,7 @@
           invalid-feedback="Name is required">
           <b-form-input
             id="price-input"
-            type="number"
+            type="tel"
             v-model="itemModalPrice"
             class="text-right inputSize"
             required

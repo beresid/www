@@ -2,7 +2,7 @@
   <div class="home">
 
     <div id="note">
-    رایگانه، رایگانم می مونه
+    مجانیه، مجانیم می مونه
     </div>
 
     <!-- navbar -->
@@ -321,7 +321,7 @@ hr.divider {
     /* right: 0; */
     background: #fde073;
     text-align: center;
-    line-height: 2.5;
+    line-height: 2.1;
     /* overflow: hidden;  */
     /* -webkit-box-shadow: 0 0 5px black; */
     /* -moz-box-shadow:    0 0 5px black; */
