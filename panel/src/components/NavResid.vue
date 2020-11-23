@@ -84,14 +84,20 @@
             v-else
             class="d-flex flex-column"
             v-for="item in callees"
-            :key="item.code"
-          >
+            :key="item.code">
+
             <hr class="m-0 p-0" style="width:100%;" />
 
-            <div
-              class="d-flex flex-row justify-content-between align-items-center pl-4 pr-4 pt-2"
-            >
-              <span class="fontBold text-danger itemDelete" v-on:click="purgeCalless(item.code)">حذف</span>
+            <div class="d-flex flex-row justify-content-between align-items-center pl-4 pr-4 pt-2">
+
+              <div class="d-flex"> 
+
+                <span class="fontBold text-danger itemDelete" v-on:click="purgeCalless(item.code)">حذف</span>
+                <span  dir="rtl" class="text-secondary ml-4" style="font-size: 13px;">{{
+                 timeDifference(item.callAt * 1000)
+                }}</span>
+              </div>
+
               <div class="d-flex flex-column text-right">
                 <span class="fontBold text-dark" style="font-size: 14px;">{{
                   item.code
@@ -100,6 +106,7 @@
                   item.msg
                 }}</span>
               </div>
+
             </div>
           </div>
         </div>
@@ -265,6 +272,43 @@ export default {
       setTimeout(() => {
         this.errored = false;
       }, 3000);
+    },
+    timeDifference: function(previous) {
+
+        const current = new Date().getTime();
+
+        var msPerMinute = 60 * 1000;
+        var msPerHour = msPerMinute * 60;
+        var msPerDay = msPerHour * 24;
+        var msPerMonth = msPerDay * 30;
+        var msPerYear = msPerDay * 365;
+
+        var elapsed = current - previous;
+
+        if (elapsed < msPerMinute) {
+            return Math.round(elapsed/1000) + ' ثانیه پیش';   
+        }
+
+        else if (elapsed < msPerHour) {
+            return Math.round(elapsed/msPerMinute) + ' دقیقه پیش';   
+        }
+
+        else if (elapsed < msPerDay ) {
+            return  Math.round(elapsed/msPerHour ) +  ' ساعت پیش' ;   
+        }
+
+        else if (elapsed < msPerMonth) {
+          return Math.round(elapsed/msPerDay) + ' روز پیش';   
+        }
+
+        else if (elapsed < msPerYear) {
+          return Math.round(elapsed/msPerMonth) + ' ماه پیش';   
+        }
+
+        else {
+          return Math.round(elapsed/msPerYear ) + ' سال پیش';   
+        }
+
     }
   }
 };

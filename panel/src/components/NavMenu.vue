@@ -31,6 +31,7 @@
           <div
             v-else
             class="d-flex flex-column"
+            style="cursor: pointer;"
             v-for="(item,index) in menus.menu[currentMenuItem].items"
             :key="item.name"
           >
@@ -38,13 +39,10 @@
 
             <div
               class="d-flex flex-row justify-content-between align-items-center pl-4 pr-4 pt-2"
-            >
+              v-bind:class="{ disabled: !item.enabled }"
+              v-on:click="showEditItemsModal(index)">
               <!-- left items -->
-              <div class="d-flex flex-row">
-                <!-- <span class="fontBold text-danger itemDelete mr-3" v-on:click="removeItem(index)">حذف</span> -->
-                <span class="fontBold itemDelete mr-5" style="color: #1565C0" v-on:click="showEditItemsModal(index)">ویرایش</span>
-                <span class="fontBold text-success" style="font-size: 13px;" dir="rtl">{{formatPrice(item.price)}}</span>
-              </div>
+              <span class="fontBold text-success" style="font-size: 13px;" dir="rtl">{{formatPrice(item.price)}}</span>
 
               <!-- right items -->
               <div class="d-flex flex-column">
@@ -205,6 +203,11 @@
           ></b-form-input>
         </b-form-group>
 
+        <div class="d-flex justify-content-end align-items-center">
+          <b-form-checkbox switch size="lg" v-model="itemModalEnabled"></b-form-checkbox>
+          <span class="labelSize mt-2">قابل نمایش</span>
+        </div>
+
       </form>
 
        <template #modal-header>
@@ -294,6 +297,11 @@
           ></b-form-input>
         </b-form-group>
 
+        <div class="d-flex justify-content-end align-items-center">
+          <b-form-checkbox switch size="lg" v-model="itemEditModalEnabled"></b-form-checkbox>
+          <span class="labelSize mt-2">قابل نمایش</span>
+        </div>
+
       </form>
 
        <template #modal-header>
@@ -362,10 +370,12 @@ export default {
       itemModalName:null,
       itemModalDesc:null,
       itemModalPrice:null,
+      itemModalEnabled:false,
 
       itemEditModalName:null,
       itemEditModalDesc:null,
       itemEditModalPrice:null,
+      itemEditModalEnabled:null,
 
       menus: {}
     };
@@ -457,6 +467,7 @@ export default {
       this.itemModalName = null;
       this.itemModalDesc = null;
       this.itemModalPrice = null;
+      this.itemModalEnabled = false;
     },
     hideItemsModal() {
       this.$refs['modalitems'].hide()
@@ -478,7 +489,8 @@ export default {
       let newItems = {
         "name": this.itemModalName,
         "price": this.itemModalPrice,
-        "desc": this.itemModalDesc
+        "desc": this.itemModalDesc,
+        "enabled": this.itemModalEnabled
       };
 
       this.menus.menu[this.currentMenuItem].items.push(newItems);
@@ -504,6 +516,7 @@ export default {
       this.itemEditModalName = this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].name;
       this.itemEditModalDesc = this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].desc;
       this.itemEditModalPrice = this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].price;
+      this.itemEditModalEnabled = this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].enabled;
       this.$refs['modaledititems'].show();
     },
 
@@ -524,6 +537,7 @@ export default {
       this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].name = this.itemEditModalName;
       this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].desc = this.itemEditModalDesc;
       this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].price = this.itemEditModalPrice;
+      this.menus.menu[this.currentMenuItem].items[this.currentMenuItemChild].enabled = this.itemEditModalEnabled;
 
       this.patchCaller();
       this.hideEditItemsModal();
@@ -534,6 +548,7 @@ export default {
       this.itemEditModalName = null;
       this.itemEditModalDesc = null;
       this.itemEditModalPrice = null;
+      this.itemEditModalEnabled = null;
     },
 
     hideEditItemsModal() {
@@ -661,6 +676,10 @@ input[type="number"] {
 
 #section-category{
   width: 135px;
+}
+
+.disabled{
+  text-decoration: line-through;
 }
 
 @media only screen and (max-width:620px) {
