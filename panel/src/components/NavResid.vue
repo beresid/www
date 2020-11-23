@@ -326,6 +326,8 @@ export default {
   src: url("../assets/fonts/IRANSansMobile_Light_fa.ttf");
 }
 
+*{user-select:none;}
+
 html,
 body {
   height: 100%;

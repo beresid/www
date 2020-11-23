@@ -16,6 +16,8 @@
     background-color: #801a28;
 }
 
+*{user-select:none;}
+
 body{
     background-color: #801a28;
 }

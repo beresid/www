@@ -103,15 +103,16 @@
           label="عنوان"
           label-for="name-input"
           class="text-right labelSize"
-          invalid-feedback="Name is required"
-        >
+          invalid-feedback=" عنوان دسته را وارد کنید">
+
           <b-form-input
             id="name-input"
             v-model="catModalName"
+            v-bind:class="{ 'is-invalid': catModalNameInvalid }"
             class="text-right inputSize"
             autofocus
-            required
-          ></b-form-input>
+            required></b-form-input>
+
         </b-form-group>
 
       </form>
@@ -205,7 +206,7 @@
 
         <div class="d-flex justify-content-end align-items-center">
           <b-form-checkbox switch size="lg" v-model="itemModalEnabled"></b-form-checkbox>
-          <span class="labelSize mt-2">قابل نمایش</span>
+          <span class="labelSize mt-2">فعال</span>
         </div>
 
       </form>
@@ -290,7 +291,7 @@
           invalid-feedback="Name is required">
           <b-form-input
             id="price-input"
-            type="number"
+            type="tel"
             v-model="itemEditModalPrice"
             class="text-right inputSize"
             required
@@ -377,6 +378,8 @@ export default {
       itemEditModalPrice:null,
       itemEditModalEnabled:null,
 
+      catModalNameInvalid: false,
+
       menus: {}
     };
   },
@@ -445,10 +448,13 @@ export default {
     hideModal() {
       this.$refs['modal'].hide()
     },
-    submitModal(){
+    submitModal(event){
 
       if(!this.catModalName){
+        this.catModalNameInvalid = true;
         return;
+      }else{
+        this.catModalNameInvalid = false;
       }
 
       let newCategory = {
@@ -562,7 +568,14 @@ export default {
       this.$refs['modaledititems'].hide()
     }
     
-  }
+  },
+  // watch: {
+  //   'itemModalPrice': function(val, oldVal) {
+  //     console.log('val ' + val.replace(',',''));
+  //     console.log('oldval ' + oldVal);
+  //       this.itemModalPrice = this.formatPrice(val.replace(',',''))
+  //   }
+  // }
 };
 </script>
 
@@ -577,6 +590,8 @@ export default {
   font-family: "IranSans";
   src: url("../assets/fonts/IRANSansMobile_Light_fa.ttf");
 }
+
+*{user-select:none;}
 
 html,
 body {
