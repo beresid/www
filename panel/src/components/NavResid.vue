@@ -99,7 +99,7 @@
               </div>
 
               <div class="d-flex flex-column text-right">
-                <span class="fontBold text-dark" style="font-size: 14px;">{{
+                <span class="fontBold text-dark big-num-tel" style="font-size: 14px;">{{
                   item.code
                 }}</span>
                 <span class="text-secondary" style="font-size: 14px;">{{
@@ -451,6 +451,34 @@ input[type="number"] {
   width: 45px;
   height: 45px;
 }
+
+  input[type=tel], .big-num-tel{
+    letter-spacing: 0.15em;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family:monospace, "monospace";
+  }
+
+  ::-webkit-input-placeholder { /* Edge */
+    font-family: 'IranSans';
+    letter-spacing: 0em;
+    font-weight: normal;
+    font-size: 16px;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer */
+    font-family: 'IranSans';
+    letter-spacing: 0em;
+    font-weight: normal;
+    font-size: 16px;
+  }
+  
+  ::placeholder {
+    font-family: 'IranSans';
+    letter-spacing: 0em;
+    font-weight: normal;
+    font-size: 16px;
+  }
 
 @media only screen and (max-width:620px) {
      /* For mobile phones: */

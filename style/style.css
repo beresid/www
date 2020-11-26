@@ -141,6 +141,7 @@ td{
     padding-left: 12px;
 }
 
+
 #spinner {
     position: fixed;
     width: 100%;
@@ -151,4 +152,32 @@ td{
   
   .plus {
     margin: auto;
+  }
+
+  input[type=tel], .big-num-tel{
+    letter-spacing: 0.15em;
+    font-size: 1.3em;
+    font-weight: bold;
+    font-family:monospace, "monospace";
+  }
+
+  ::-webkit-input-placeholder { /* Edge */
+    font-family: 'IranSans';
+    letter-spacing: 0em;
+    font-weight: normal;
+    font-size: 17px;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer */
+    font-family: 'IranSans';
+    letter-spacing: 0em;
+    font-weight: normal;
+    font-size: 17px;
+  }
+  
+  ::placeholder {
+    font-family: 'IranSans';
+    letter-spacing: 0em;
+    font-weight: normal;
+    font-size: 17px;
   }
