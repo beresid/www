@@ -20,7 +20,8 @@
                 v-model="code"
                 pattern="[1-9]"
                 type="tel"
-                class="form-control text-right inputSize"
+                onClick="this.select();" 
+                class="form-control text-right inputSize text-center"
                 id="formGroupExampleInput"
                 placeholder="شماره رسید"
                 required
@@ -33,7 +34,7 @@
               <input
                 v-model="msg"
                 type="text"
-                class="form-control text-right inputSize"
+                class="form-control text-right inputSize text-center"
                 id="formGroupExampleInput2"
                 placeholder="پیام"
                 required
@@ -178,14 +179,20 @@ export default {
         .then(response => {
           // console.log(response);
 
-          if (response.status == 200) {
-            this.callees = response.data;
-            this.highestCode = this.calcHighestCode().code;
-          } else {
-            this.hasError('لطفا مجددا تلاش کنید');
+          try{
+              if (response.status == 200) {
+                this.callees = response.data;
+                this.highestCode = this.calcHighestCode().code;
+              } else {
+                this.hasError('لطفا مجددا تلاش کنید');
+              }
+          }catch(e){
+              console.log(e);
           }
+
         })
         .catch(error => {
+          console.log('clear!!! ' + error)
             localStorage.clear();
           this.$router.replace({ path: "/login" });
           // this.hasError('لطفا مجددا تلاش کنید');

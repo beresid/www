@@ -73,7 +73,7 @@
               <input
                 v-model="oldPass"
                 type="text"
-                class="form-control text-right inputSize"
+                class="form-control text-right inputSize text-center"
                 id="formGroupExampleInput"
                 placeholder="رمز عبور فعلی"
                 required
@@ -87,7 +87,7 @@
               <input
                 v-model="newPass"
                 type="text"
-                class="form-control text-right inputSize"
+                class="form-control text-right inputSize text-center"
                 id="formGroupExampleInput2"
                 placeholder="رمز عبور جدید"
                 required
@@ -101,7 +101,7 @@
               <input
                 v-model="reNewPass"
                 type="text"
-                class="form-control text-right inputSize"
+                class="form-control text-right inputSize text-center"
                 id="formGroupExampleInput2"
                 placeholder="تکرار رمز عبور"
                 required
