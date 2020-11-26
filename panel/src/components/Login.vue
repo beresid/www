@@ -59,7 +59,7 @@
         <span v-else>ورود</span>
       </button>
 
-      <div v-show="errored" class="alert alert-danger mt-2 font">
+      <div v-show="errored" class="alert alert-warning mt-2 font">
         <strong>خطا!</strong>
         <span>نام کاربری یا رمز عبور اشتباه است</span>
       </div>
@@ -162,7 +162,21 @@ export default {
   src: url("../assets/fonts/IRANSansMobile_Light_fa.ttf");
 }
 
-*{user-select:none;}
+* {    
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 
 html,
 body {

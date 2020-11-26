@@ -9,8 +9,9 @@
 
           <div class="d-flex flex-row">
 
-            <button class="btn btn-success removeSize" type="submit" v-b-modal.modal-items>
-              افزودن
+            <button class="btn btn-success removeSize d-flex justify-content-center align-items-center" type="submit" v-b-modal.modal-items>
+              <i class="fas fa-plus m-0 p-0"></i>
+              <span class="pl-1" >افزودن</span>
             </button>
 
             <button class="btn btn-danger removeSize ml-2" type="submit" v-on:click="removeCategory">
@@ -591,7 +592,21 @@ export default {
   src: url("../assets/fonts/IRANSansMobile_Light_fa.ttf");
 }
 
-*{user-select:none;}
+* {    
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 
 html,
 body {

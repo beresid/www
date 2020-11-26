@@ -1,9 +1,9 @@
 <template>
   <div class="home">
 
-    <div id="note">
+    <!-- <div id="note">
     مجانیه، مجانیم می مونه
-    </div>
+    </div> -->
 
     <!-- navbar -->
     <div>
@@ -133,7 +133,21 @@ export default {
   src: url("../assets/fonts/IRANSansMobile_Light_fa.ttf");
 }
 
-*{user-select:none;}
+* {    
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 
 html,
 body {

@@ -177,7 +177,7 @@
 
     <qrcode-vue :value="value" :size="450" level="H"  class="onlyPrint"></qrcode-vue>
 
-    <div v-show="errored" class="alert alert-danger mt-2 font card-width fixed-bottom mx-auto">
+    <div v-show="errored" class="alert alert-warning mt-2 font card-width fixed-bottom mx-auto">
       <strong>خطا!</strong>
       <span>{{errorMsg}}</span>
     </div>
@@ -405,7 +405,21 @@ export default {
   src: url("../assets/fonts/IRANSansMobile_Light_fa.ttf");
 }
 
-*{user-select:none;}
+* {    
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 
 html,
 body {

@@ -88,11 +88,11 @@
 
             <hr class="m-0 p-0" style="width:100%;" />
 
-            <div class="d-flex flex-row justify-content-between align-items-center pl-4 pr-4 pt-2">
+            <div class="d-flex flex-row justify-content-between align-items-center pl-4 pr-4 pt-2 c-pointer" v-on:click="CallessTap(item.code,item.msg)">
 
               <div class="d-flex"> 
 
-                <span class="fontBold text-danger itemDelete" v-on:click="purgeCalless(item.code)">حذف</span>
+                <span class="fontBold text-danger itemDelete" v-on:click="purgeCalless(item.code)"><i class="far fa-trash-alt"></i></span>
                 <span  dir="rtl" class="text-secondary ml-4" style="font-size: 13px;">{{
                  timeDifference(item.callAt * 1000)
                 }}</span>
@@ -113,10 +113,12 @@
       </div>
     </div>
 
-    <div v-show="errored" class="alert alert-danger mt-2 font card-width fixed-bottom mx-auto">
+    <div v-show="errored" class="alert alert-warning mt-2 font card-width fixed-bottom mx-auto">
       <strong>خطا!</strong>
       <span>{{errorMsg}}</span>
     </div>
+
+    <button v-on:click="scrollTop" id="topBtn" class="bg-info"><i class="fas fa-angle-double-up p-0 m-0 pt-1"></i></button>
 
   </div>
 </template>
@@ -140,8 +142,26 @@ export default {
   },
   mounted() {
     this.getCalleesList();
+
+    var mybutton = document.getElementById("topBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
   },
   methods: {
+    scrollTop: function(e){
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    },
     getCalleesList: function(event) {
       const body = {
         filter: {},
@@ -309,6 +329,10 @@ export default {
           return Math.round(elapsed/msPerYear ) + ' سال پیش';   
         }
 
+    },
+    CallessTap: function(code, msg){
+      this.code= code;
+      this.msg= msg;
     }
   }
 };
@@ -326,10 +350,25 @@ export default {
   src: url("../assets/fonts/IRANSansMobile_Light_fa.ttf");
 }
 
-*{user-select:none;}
+* {    
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 
 html,
 body {
+  scroll-behavior: smooth;
   height: 100%;
   background-color: #fefefe;
 }
@@ -380,7 +419,7 @@ input[type="number"] {
 }
 
 .itemDelete {
-  font-size: 13px;
+  font-size: 17px;
   cursor: pointer;
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
@@ -392,10 +431,32 @@ input[type="number"] {
   width: 50%;
 }
 
+.c-pointer{
+  cursor: pointer;
+}
+
+#topBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  padding: 0px;
+  border-radius: 22.5px;
+  width: 45px;
+  height: 45px;
+}
+
 @media only screen and (max-width:620px) {
      /* For mobile phones: */
     .card-width{
         width:90%;
     }
 }
+
 </style>
