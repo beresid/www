@@ -20,14 +20,15 @@
 
           </div>
 
-          <span class="fontBold">{{ menus.menu[currentMenuItem].name }}</span>
+          <span v-if="menus.menu[currentMenuItem]" class="fontBold">{{ menus.menu[currentMenuItem].name || ''}}</span>
 
         </div>
 
         <!-- body -->
         <div class="card-body bg-transparent p-0 m-0 text-center">
 
-          <div v-if="menus.menu[currentMenuItem].items.length == 0" class="text-secondary mt-3 mb-3 p-0" style="font-size: 14px;">موردی یافت نشد</div>
+          <div v-if="!menus.menu[currentMenuItem]" class="text-secondary mt-3 mb-3 p-0" style="font-size: 14px;">موردی یافت نشد</div>
+          <div v-else-if="menus.menu[currentMenuItem].items == 0" class="text-secondary mt-3 mb-3 p-0" style="font-size: 14px;">موردی یافت نشد</div>
 
           <div
             v-else
@@ -43,12 +44,12 @@
               v-bind:class="{ disabled: !item.enabled }"
               v-on:click="showEditItemsModal(index)">
               <!-- left items -->
-              <span class="fontBold text-success" style="font-size: 13px;" dir="rtl">{{formatPrice(item.price)}}</span>
+              <span class="fontBold text-success" style="font-size: 13px;" dir="rtl">{{formatPrice(item.price || 0)}}</span>
 
               <!-- right items -->
               <div class="d-flex flex-column">
-                <span class="fontBold text-dark text-right" style="font-size: 14px;">{{item.name}}</span>
-                <span class="text-secondary text-right" style="font-size: 12px;">{{item.desc}}</span>
+                <span class="fontBold text-dark text-right" style="font-size: 14px;">{{item.name || ''}}</span>
+                <span class="text-secondary text-right" style="font-size: 12px;">{{item.desc || ''}}</span>
               </div>
 
             </div>
@@ -74,7 +75,11 @@
         <!-- body -->
         <div class="bg-transparent">
           <div class="d-flex flex-column fontBold">
+
+            <div v-if="menus.menu == 0" class="text-secondary mt-3 mb-3 text-center" style="font-size: 12px;">موردی یافت نشد</div>
+
             <button
+              v-else
               type="button"
               class="btn btn-deactive"
               v-for="(item, index) in menus.menu"
@@ -82,7 +87,7 @@
               v-bind:class="{ 'btn-active': index == currentMenuItem }"
               v-on:click="currentMenuItem = index"
             >
-              {{ item.name }}
+              {{ item.name || ''}}
             </button>
           </div>
         </div>
@@ -405,7 +410,21 @@ export default {
           console.log(response);
 
           if (response.status == 200) {
-            this.menus = response.data;
+
+            if(response.data.menu != null && response.data.menu.length != 0){
+              this.menus = response.data;
+            }else{
+
+              var temp = {
+                "dynamicID": "",
+                "menu": []
+              };
+
+              this.menus = temp;
+            }
+            
+
+            console.log('aa/ ' + response.data);
           } else {
             this.hasError("لطفا مجددا تلاش کنید");
           }
@@ -416,6 +435,10 @@ export default {
         });
     },
     patchCaller: function(event) {
+
+      this.menus.dynamicID = localStorage.userName;
+      console.log('body:' + JSON.stringify(this.menus) );
+
       axios
         .post(config.PATCH_CALLER, this.menus, {
           headers: {

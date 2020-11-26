@@ -18,7 +18,7 @@
               >
               <input
                 v-model="code"
-                pattern="[1-9]"
+                pattern="[0123456789۰۱۲۳۴۵۶۷۸۹]{1,8}"
                 type="tel"
                 onClick="this.select();" 
                 class="form-control text-right inputSize text-center"
